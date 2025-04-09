@@ -1,5 +1,5 @@
 ---
-title: "Exploiting CSRF and OTP Reuse: How Weak Token Management Enables Password Reset Attacks, Leading…"
+title: "Exploiting CSRF and OTP Reuse: How Weak Token Management Enables Password Reset Attacks, Leading to ATO"
 datePublished: Thu Nov 28 2024 18:38:31 GMT+0000 (Coordinated Universal Time)
 cuid: cm8slnmcl001k09jo46ic40px
 slug: exploiting-csrf-and-otp-reuse-how-weak-token-management-enables-password-reset-attacks-leading-to-c2f6b914f398
