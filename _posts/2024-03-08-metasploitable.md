@@ -6,7 +6,7 @@ slug: how-to-set-up-metasploitable-lab-for-wapt-3d3659841b5f
 cover: https://cdn.hashnode.com/res/hashnode/image/upload/v1743155273070/7f53b5bc-feb6-457a-ba13-3446a1bc6062.jpeg
 publish: true
 categories: [Ethical hacking]
-tag: [webapp, metalsploitable]
+tag: [webapp, metasploitable]
 ---
 
 Hey there! been a minute. In this write-up, I’ll be showing you how to set up your own metalsploitable virtual lab for web application security and penetration testing.
