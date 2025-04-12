@@ -1,6 +1,6 @@
 ---
 title: "Cryptographic Failures - BreakTheFlask"
-date: 2025-04-10
+date: 2025-04-12
 categories: [OWASP, Code review, BreakTheFlask]
 tags: [Code review, IDOR, BAC]
 layout: post
@@ -185,6 +185,9 @@ Observe reused blocks in base64.
 
 ![text B](/assets/images/B8.png)
 
+Both are base64 representations of AES-ECB encrypted data. At a glance, you can visually spot the pattern reuse:
+
+    The first several characters (MPfvFUzbYCaQ1W2MxL/gB) are identical in both.
 
 ### Fix:
 Switch to a secure mode like CBC with IV:
