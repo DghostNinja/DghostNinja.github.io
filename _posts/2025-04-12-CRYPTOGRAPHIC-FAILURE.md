@@ -189,6 +189,10 @@ Both are base64 representations of AES-ECB encrypted data. At a glance, you can 
 
     The first several characters (MPfvFUzbYCaQ1W2MxL/gB) are identical in both.
 
+AES-ECB mode leaks patterns. Identical plaintext blocks always result in identical ciphertext blocks.
+
+This allows block-level inference, especially with known prefixes or repeating inputs.
+
 ### Fix:
 Switch to a secure mode like CBC with IV:
 ```python
