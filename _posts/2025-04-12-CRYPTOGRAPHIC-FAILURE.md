@@ -252,9 +252,45 @@ Use a long, random, securely stored secret and also use a strong, unpredictable 
 JWT_SECRET = os.environ.get("JWT_SECRET")  # Load from env
 ```
 
+## 3. Sensitive Data in Logs
+Overview
 
+The app logs user-provided secrets.
+
+### Vulnerable Code:
+```python
+secret = request.args.get("secret")
+print(f"LOGGED: {secret}")
+```
+
+At a glance, it looks harmless, just printing the secret for debugging. But in a real-world production environment, this behavior is dangerous and here's why.
+
+When a user supplies a secret like **/log?secret=myBankPassword123**, it gets printed and ends up in the application logs.
+Logs are often sent to:
+
+    Log aggregators like ELK Stack, Datadog, or Splunk.
+
+    Cloud services and CI/CD tools.
+
+    Centralized syslog servers where multiple teams might have read access.
+
+Anyone with access to those logs can see the raw secrets—plaintext passwords, API keys, tokens, etc.
+
+This ties into Cryptographic Failures (CWE-532, CWE-312), because you're violating the confidentiality of user data.
+
+Even if the app uses strong encryption for storage or transmission, leaking secrets in plaintext via logs nullifies all cryptographic protections.
+
+### Fix:
+Avoid logging sensitive user input:
+```python
+logging.info("User submitted secret [REDACTED]")
+```
 
 ---
+### Conclusion
+This lab showcases realistic, practical crypto flaws that you’ll absolutely encounter in CTFs, bug bounty programs, and real-world pentests. Knowing how to identify and exploit them, and just as importantly, how to fix them is what levels you up as a security researcher.
 
-#### Shout-out to my guy for attempting this challenge. Check out his own break down on X ==> [Kwesi Larry](https://x.com/okxwizard/status/1911297162081661309?t=q7Z1La_gvAjS30GEgmVCXg&s=19)
-I left some of these vulnerablities unsolved here in the blog. Try find them 😉
+#### Shout-out to my guy for attempting this challenge. Check out his break down on X ==> [Kwesi Larry](https://x.com/okxwizard/status/1911297162081661309?t=q7Z1La_gvAjS30GEgmVCXg&s=19)
+I left some vulnerablities unsolved here in the blog. Try find them 😉
+
+Happy hacking, and may your crypto always be strong (unless you’re testing it)!
