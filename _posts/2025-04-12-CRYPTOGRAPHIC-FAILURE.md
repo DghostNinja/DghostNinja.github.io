@@ -200,5 +200,61 @@ iv = get_random_bytes(16)
 cipher = AES.new(ENCRYPTION_KEY, AES.MODE_CBC, iv)
 ```
 
+
+## 2. JWT Secret Exposure via Weak Secrets
+
+Overview
+
+The JWT tokens are signed using a hardcoded weak secret **(supersecret)**, making them brute-forceable.
+
+### Vulnerable code :
+```python
+JWT_SECRET = "supersecret"
+token = jwt.encode({"user": username}, JWT_SECRET, algorithm="HS256")
+
+```
+
+ An attacker could easily brute-force or guess it, especially with tools like jwt_tool, JWT Cracker, or hashcat. However, to make this writeup less bulky, we wont't be cracking the seceret code since it's being revealed in the source code.
+
+To exploit the this vulnerability, navigate to the **/login** and login as a normal user to get asigned a JWT token.
+
+![token_Ben](/assets/images/B9.png)
+
+We get a token for user **Ben**    
+
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiQmVuIiwicm9sZSI6InVzZXIifQ.vE_RVxsZrGOoaH7VC7es-cGllc5zDumxti-YKuEGAfk"
+
+If you try to visit the **/admin** panel with this token you get a 403 error
+
+![403](/assets/images/B10.png)
+
+
+Now, let's forge the auth token to the admin panel. Go to [jwt.io](https://jwt.io/) and change the user in the payload section from **Ben** to **admin**
+Checking the role assigned to **Ben** you will see a **user** role.
+
+![alt](/assets/images/B11.png)
+
+Change the assigned role to admin and sign the token with the secret key *supersecret* which was leaked in the code.
+![alt](/assets/images/B12.png)
+
+Paste the signed JWT token into the request and Boom! You've just bypassed auth. 
+
+![alt](/assets/images/B13.png)
+
+You now have access to the admin panel and some other privileges that comes with being the admin.
+
+
+### Fix:
+Use a long, random, securely stored secret and also use a strong, unpredictable JWT secret
+
+
+```python
+JWT_SECRET = os.environ.get("JWT_SECRET")  # Load from env
+```
+
+
+
 ---
+
 #### Shout-out to my guy for attempting this challenge. Check out his own break down on X ==> [Kwesi Larry](https://x.com/okxwizard/status/1911297162081661309?t=q7Z1La_gvAjS30GEgmVCXg&s=19)
+I left some of these vulnerablities unsolved here in the blog. Try find them 😉
