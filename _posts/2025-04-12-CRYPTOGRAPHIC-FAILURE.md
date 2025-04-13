@@ -12,7 +12,7 @@ publish: true
 
 Welcome to the Crypto Failures Lab — a playground intentionally riddled with practical, real-world cryptographic vulnerabilities. If you're a seasoned security researcher or an aspiring bug bounty hunter, this walk-through is designed to take you step-by-step through each vulnerability, showing both how to exploit them and how to patch them.
 
-Let's dive right in *[LAB ==> **https://github.com/DghostNinja/BreakTheFlask.git**]*
+Let's dive right in [LAB](https://github.com/DghostNinja/BreakTheFlask.git)
 
 ```python
 from flask import Flask, request, jsonify, make_response, redirect, send_file
