@@ -201,4 +201,4 @@ cipher = AES.new(ENCRYPTION_KEY, AES.MODE_CBC, iv)
 ```
 
 ---
-#### Shout out to my guy for attempting this challenge. Check out his own break down on X ==> [Kwesi Larry](https://x.com/okxwizard/status/1911297162081661309?t=q7Z1La_gvAjS30GEgmVCXg&s=19)
+#### Shout-out to my guy for attempting this challenge. Check out his own break down on X ==> [Kwesi Larry](https://x.com/okxwizard/status/1911297162081661309?t=q7Z1La_gvAjS30GEgmVCXg&s=19)
