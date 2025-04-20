@@ -1,8 +1,8 @@
 ---
 title: "Injection - BreakTheFlask"
-date: 2025-04-12
+date: 2025-04-18
 categories: [OWASP, Code review, BreakTheFlask]
-tags: [Code review, IDOR, BAC]
+tags: [Code review, XSS, SQLi, LDAP]
 layout: post
 publish: true
 ---
