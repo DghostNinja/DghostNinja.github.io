@@ -158,8 +158,73 @@ if __name__ == '__main__':
 
 ---
 
-## 1. 
-### vulnerable code:
-```python
+## 1. SQL Injection (SQLi)
+Overview 
+SQL Injection occurs when unsanitized user input is embedded directly into an SQL query, allowing attackers to manipulate the query logic. If successful, it can lead to authentication bypass, data leakage, or full DB compromise.
 
+### Vulnerable code:
+```python
+query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
+cursor.execute(query)
 ```
+
+### Exploitation:
+Visit the vulnerable endpoint at *http://localhost:5000/login*. Enter:
+
+```plaintext
+Username: ' OR 1=1 --
+Password: anything
+```
+![alt](/assets/images/B14.png)
+
+What’s happening here is you're closing the original string ('), injecting a logic statement that always returns true (OR 1=1), and commenting out the rest (--). The query becomes:
+
+```python
+SELECT * FROM users WHERE username = '' OR 1=1 --' AND password = '...'
+```
+
+![alt](/assets/images/B15.png)
+
+Boom! You’re logged in as the admin user in the database without the correct password.
+
+
+### Fix:
+Use parameterized queries:
+```python
+cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
+```
+
+## 2. Cross-Site Scripting (XSS)
+Overview
+
+Cross-Site Scripting (XSS) allows attackers to inject malicious scripts into webpages viewed by others. It can be used to steal cookies, redirect users, or hijack sessions.
+
+
+### Vulnerable code:
+
+```python
+name = request.args.get('name', '')
+html = f"...<p>Hello, {name}</p>..."
+return render_template_string(html)
+```
+
+### Exploitation:
+Navigate to the vulnerable endpoint *http://127.0.0.1:5000/xss?name=World*
+Enter a basic script tag payload into the input field or the browser's URL
+
+```html
+<script>alert('xss')</script>
+```
+
+![alt](/assets/images/B16.png)
+ We have a reflected XSS displayed on the page.
+
+ ### Fix:
+ Use {{ }} in Jinja templates to auto-escape, or better use actual template files, not inline rendering.
+
+ ```python
+html = """
+<p>Hello, {{ name }}</p>
+"""
+return render_template_string(html, name=name)
+ ```
