@@ -50,3 +50,9 @@ As usual, register 2 accounts like we are testing for IDOR. Let's call them both
 
 
 ![alt](/assets/images/vuln-api/A6.png)
+
+To test an ID parameter or unique number, we are going to test the transfer API so we can have a transaction history on our dashboard. Log in into Account A and initiate a transfer to Account B.
+
+![alt](/assets/images/vuln-api/A7.png)
+
+We have new balnce after we removed **$100** 
