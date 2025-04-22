@@ -209,7 +209,7 @@ return render_template_string(html)
 ```
 
 ### Exploitation:
-Navigate to the vulnerable endpoint *http://127.0.0.1:5000/xss?name=World*
+Navigate to the vulnerable endpoint *http://127.0.0.1:5000/xss?name=World*. 
 Enter a basic script tag payload into the input field or the browser's URL
 
 ```html
@@ -228,3 +228,103 @@ html = """
 """
 return render_template_string(html, name=name)
  ```
+
+## 3. Command Injection
+Overview 
+
+Command Injection occurs when input from a user is used unsafely in OS-level commands. Attackers can inject arbitrary shell commands that the server will execute.
+
+### Vulnerable code:
+ ```python
+result = os.popen(command).read()
+ ```
+
+### Exploitation:
+Navigate to the vulnerable endpoint *http://localhost:5000/terminal*. Try the linux command 
+
+```plaintext
+cmd=whoami
+```
+
+![alt](/assets/images/B17.png)
+
+![alt](/assets/images/B18.png)
+
+From the above, we got name of the system user(won't be me in real world scenario).
+
+Since the basic test payload worked, you can futher advacnce by trying other payloads:
+
+```plaintext
+whoami; ls -la; cat /etc/passwd
+```
+![alt](/assets/images/B19.png)
+
+We got the directory listing and even sensitive file contents. That’s full RCE (Remote Code Execution) on a real web server.
+
+### Fix:
+Use subprocess.run() with a list and no shell. For multi-command support, validate against a whitelist of safe commands or subcommands.
+
+```python
+import subprocess
+result = subprocess.run(["whoami"], capture_output=True, text=True)
+```
+
+
+
+## 4. LDAP(Lightweight Directory Access Protocol)
+Overview 
+LDAP Injection occurs when untrusted user input is used to construct LDAP queries. Attackers can modify query logic to bypass authentication or extract directory data.
+
+### Vulnerable code:
+ ```python
+username = request.form['username']
+password = request.form['password']
+ldap_filter = f"(&(uid={username})(userPassword={password}))"
+
+conn.search('dc=example,dc=com', ldap_filter, attributes=['cn'])
+
+ ```
+
+
+### Exploitation:
+This code directly interpolates user input into an LDAP query. To exploit, navigate to vulnerable endpoint *http://localhost:5000/ldap-login*. Let's a basic payload that
+
+```plaintext
+Username: admin)(|(uid=*))
+Password: anything
+```
+
+Constructed filter becomes:
+```plaintext
+(&(uid=admin)(|(uid=*))(userPassword=anything))
+```
+The (|(uid=*)) gives you wildcard access.
+
+
+
+### Fix:
+Use ldap3's safe filter builder. This escapes metacharacters like ) or *, neutralizing injection.
+```python
+from ldap3.utils.conv import escape_filter_chars
+
+safe_user = escape_filter_chars(username)
+safe_pass = escape_filter_chars(password)
+search_filter = f"(&(uid={safe_user})(userPassword={safe_pass}))"
+```
+
+**N.B:** There is no LDAP server on this lab, that's why there's no image for the exploitation process. However, you can create one and run locally on a docker for practice.
+
+---
+
+## Final Thoughts
+
++ Use parameterized queries for DB access
+
++ Escape output and use templates for frontend
+
++ Never pass user input to os or eval
+
++ Sanitize LDAP filters and anything string-based
+
+
+Happy hacking, and stay curious.
