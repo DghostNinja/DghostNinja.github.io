@@ -9,11 +9,13 @@ publish: true
 
 # HACKING A BANK API
 
-In this write-up, I'll be exploiting the APIs in the web apllication version of the vulnerable lab, as a complement to my completed course from [APISEC University](https://university.apisec.ai/)
-
 [Ghost St Badmus](https://x.com/commando_skiipz?t=rPix1FAXa-vFamgkrxjjnQ&s=09), a cracked Snr. Application Security Engineer developed a vulnerable Web Application, API and Mobile Application for Pentesters, Bug Bounty Hunters and Security Researchers. To test their skills without messing up real world infrastructures.
 
+
+In this write-up, I'll be exploiting the APIs in the web apllication version of the vulnerable lab, as a complement to my completed course from [APISEC University](https://university.apisec.ai/)
+
 ---
+
 **Link to these projects can be found:**
 
 [🏦 Vulnerable Bank](https://github.com/Commando-X/vuln-bank)
@@ -41,3 +43,5 @@ First thing we are doing is reverse engineering the API so we can work on it on 
 
 ## BOLA (Broken Obeject Level Authorization)
 Let's start with exploiting BOLA from the API endpoint.
+
+As usual, register 2 accounts like we are testing for IDOR. Let's call them both Acount A and Account B respectively. 
