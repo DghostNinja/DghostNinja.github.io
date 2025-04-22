@@ -22,8 +22,8 @@ In this write-up, I'll be exploiting the APIs in the web apllication version of 
 
 
 The installation process of these labs are included in the documentation on github
----
 
+---
 
 ## Setup
 First thing we are doing is reverse engineering the API so we can work on it on Postman. Navigate to the **openapi.yaml** on the github repo, copy the JSON and paste into [swagger editor](https://editor.swagger.io)
@@ -39,8 +39,5 @@ First thing we are doing is reverse engineering the API so we can work on it on 
 
 - We have the swagger file imported into postman. Now, let's start hacking!
 
-## BOLA(Broken Obeject Level Authorization)
+## BOLA (Broken Obeject Level Authorization)
 Let's start with exploiting BOLA from the API endpoint.
-
-
-f
