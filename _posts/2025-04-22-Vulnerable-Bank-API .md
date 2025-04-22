@@ -12,9 +12,9 @@ publish: true
 ---
 **Link to this projects can be found:**
 
-[Vulnerable Bank](https://github.com/Commando-X/vuln-bank)
+[🏦 Vulnerable Bank](https://github.com/Commando-X/vuln-bank)
 
-[📱 Vulnerable Bank Mobile Application]()
+[📱 Vulnerable Bank Mobile Application](https://github.com/Commando-X/vuln-bank-mobile)
 
 
 The installation process of these labs are included in the documentation on github
