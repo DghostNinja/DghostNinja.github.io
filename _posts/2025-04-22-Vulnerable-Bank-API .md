@@ -44,4 +44,9 @@ First thing we are doing is reverse engineering the API so we can work on it on 
 ## BOLA (Broken Obeject Level Authorization)
 Let's start with exploiting BOLA from the API endpoint.
 
-As usual, register 2 accounts like we are testing for IDOR. Let's call them both Acount A and Account B respectively. 
+As usual, register 2 accounts like we are testing for IDOR. Let's call them both Acount A and Account B respectively. On Postman, set your baseurl in the collection to **http://localhost:5000**. Login in.
+
+![alt](/assets/images/vuln-api/A5.png)
+
+
+![alt](/assets/images/vuln-api/A6.png)
