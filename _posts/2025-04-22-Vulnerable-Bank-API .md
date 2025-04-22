@@ -38,4 +38,7 @@ First thing we are doing is reverse engineering the API so we can work on it on 
 
 - We have the swagger file imported into postman. Now, let's start hacking!
 
+## BOLA(Broken Obeject Level Authorization)
+Let's start with exploiting BOLA from the API endpoint.
+
 
