@@ -41,7 +41,12 @@ First thing we are doing is reverse engineering the API so we can work on it on 
 
 - We have the swagger file imported into postman. Now, let's start hacking!
 
-## BOLA (Broken Obeject Level Authorization)
+## API1:  BOLA (Broken Obeject Level Authorization)
+BOLA (Broken Object Level Authorization) is a common and critical vulnerability that occurs when an API exposes object identifiers (like user IDs, account numbers, or transaction IDs) and fails to properly verify whether the currently authenticated user is authorized to access that object.
+
+
+
+### Exploitation:
 Let's start with exploiting BOLA from the API endpoint.
 
 As usual, register 2 accounts like we are testing for IDOR. Let's call them both Acount A and Account B respectively. On Postman, set your baseurl in the collection to **http://localhost:5000**. Login in.
@@ -57,3 +62,22 @@ To test an ID parameter or unique number, we are going to test the transfer API 
 
 We have new balnce since we removed **$100** 
 
+Now, let's log in again as Account B and move to the transaction endpoint so we can view the transations of Account A, which is NONE.
+
+![alt](/assets/images/vuln-api/A8.png)
+
+- Switch the account number to that of Account A, which is **2121763565** in my case.
+
+![alt](/assets/images/vuln-api/A9.png)
+
+From the image above, we can notice we got are able to view the transaction detail of Account A while we are authenticated as Account B.
+
+The API failed to enforce object-level authorization. It trusted that any user who sends a valid token could access any account's transactions, as long as they knew the account ID.
+
+
+## API2: Broken Authentication
+
+
+
+
+### Exploitation:
