@@ -55,4 +55,5 @@ To test an ID parameter or unique number, we are going to test the transfer API 
 
 ![alt](/assets/images/vuln-api/A7.png)
 
-We have new balnce after we removed **$100** 
+We have new balnce since we removed **$100** 
+
