@@ -62,7 +62,7 @@ To test an ID parameter or unique number, we are going to test the transfer API 
 
 We have new balnce since we removed **$100** 
 
-Now, let's log in again as Account B and move to the transaction endpoint so we can view the transations of Account A, which is NONE.
+Now, let's log in again as Account B and move to the transaction endpoint so we can view the transations of Account A.
 
 ![alt](/assets/images/vuln-api/A8.png)
 
@@ -70,7 +70,7 @@ Now, let's log in again as Account B and move to the transaction endpoint so we 
 
 ![alt](/assets/images/vuln-api/A9.png)
 
-From the image above, we can notice we got are able to view the transaction detail of Account A while we are authenticated as Account B.
+From the image above, we can notice we got are able to view the transaction details of Account A while we are authenticated as Account B.
 
 The API failed to enforce object-level authorization. It trusted that any user who sends a valid token could access any account's transactions, as long as they knew the account ID.
 
