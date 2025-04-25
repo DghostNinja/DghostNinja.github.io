@@ -227,10 +227,34 @@ Boom! We've deleted account A by using account B.
 + **Bonus**: You can dig around to find and exploit more admin endpoint not properly verifying if you are admin or not, before you perform a specific action on the server
 
 ### Fix:
+- Role-Based Access Control (RBAC):
+Ensure proper role validation for each function or API endpoint.
 
+- Function-Level Authorization Checks:
+Explicitly verify that the authenticated user has permission to access or perform actions on specific functions.
+
+- Principle of Least Privilege:
+Limit each user's access to only the functions and data necessary for their role.
+
+- Centralized Authorization Logic:
+Implement a consistent authorization layer (middleware or service) across all endpoints for easy management.
+
+- Audit Logs:
+Log and monitor all privileged function access to detect unauthorized attempts.
 
 
 ## API6: Unrestricted Access to Sensitive Business Flows
+
+
+
+### Exploitation:
+
+
+### Fix:
+
+
+
+## API7: Unrestricted Access to Sensitive Business Flows
 
 
 
