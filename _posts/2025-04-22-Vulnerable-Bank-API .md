@@ -373,10 +373,70 @@ Include ownership, version, environment (prod/dev), and purpose.
 Set up logging to detect usage of outdated or unknown endpoints.
 
 # API10: Unsafe Consumption of APIs
-
+Unsafe Consumption of APIs refers to the practice of trusting and directly using data or services from external or third-party APIs without proper validation, sanitization, or security measures. This can lead to various security issues, such as the introduction of malicious payloads, unexpected data, or exploitation of vulnerabilities in external services.
 
 
 ### Exploitation:
+Since this app is not using any third party API, let's go with exploiting SQL injection using Postman.
 
+Move to postman and set an environmental variable in your envirnoment. Name  the environment and the variable/parameter whatever you want. Set a payload in the value e.g we are using **'OR 1=1 --** as test.
+
+Head over to the login API and right beside the input field for the name add **{{SQL-test}}** (whatever name you saved your environmental variable to).
+
+![alt](/assets/images/vuln-api/A29.png)
+
+Send the request and we are logged in as admin
+
+![alt](/assets/images/vuln-api/A30.png)
+
+This can be done from the webpage login form also, or you can copy and use the admin JWT token for aany attack that requires admin privileges.
+
+
++ We can also add endpoints you want to test into a collection and test them all at once, using the set variable with various payloads based on vullnerability type.
+
+
++ **Bonus**: You can test for XSS to steal user cookies in payment description. You can also test for file upload.
 
 ### Fix:
+- Validate All Incoming Data
+Ensure that any data received from external APIs is validated against expected schemas, types, and formats.
+
+- Use API Security Best Practices
+Secure API communication with HTTPS, and implement authentication/authorization (e.g., OAuth, API keys) to verify the API’s authenticity.
+
+- Sanitize Data
+Sanitize any input data, especially when interacting with APIs that could be prone to injection attacks or data manipulation.
+
+- Implement Strict Error Handling
+Prevent the application from revealing sensitive internal details by implementing fail-safe mechanisms and proper error logging.
+
+- Apply Rate Limiting and Throttling
+Protect your API consumption from denial-of-service (DoS) attacks by limiting the number of API requests or responses.
+
+- Check for API Version Compatibility
+ Regularly verify and ensure the consumed API version is up to date and supported. Avoid using deprecated or outdated API versions.
+
+- Implement Timeouts and Retry Logic
+Avoid indefinite waiting and system hangs by setting timeout limits for API requests and having retry logic for failed calls.
+
+- Monitor and Audit API Responses
+Continuously monitor the responses for anomalies and log interactions to track malicious behavior or unexpected data.
+
+---
+
+
+## 🧩 Wrapping Up: The Bug Stops Here… For Now 😉
+
+Well folks, that’s a solid tour of some juicy API vulnerabilities, from Broken Authentication to BOPLA, BOLA, SSRF, and our lovable chaos agent.Security Misconfiguration. We poked around, nudged a few doors open (ethically, of course), and saw firsthand how simple mistakes can turn into serious security gaps.
+
+But here's the kicker, I didn’t even exploit everything this lab had to offer. That’s right, there are more hidden treasures (or ticking time bombs, depending on your perspective) waiting to be found. If you’ve got the curiosity and caffeine, I encourage you to keep digging.
+
+Security is a journey, not a destination, and sometimes that journey involves a lot of curl, wfuzz, and “Wait… did I just reset someone else’s password!?
+
+So go ahead, fire up your tools, launch your browser proxy, and explore responsibly. Just remember; always test within ethical scope or the only thing you’ll be hacking is your future job prospects 😅.
+
+Until next time, stay sharp, stay ethical, and don’t forget to fix your CORS headers.
+
+Happy Hacking ✌️ 🔥 
+
+~[iPsalmy]()
