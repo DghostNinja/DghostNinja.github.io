@@ -439,4 +439,4 @@ Until next time, stay sharp, stay ethical, and don’t forget to fix your CORS h
 
 Happy Hacking ✌️ 🔥 
 
-~[iPsalmy](https://canary.discord.com/channels/1256943466685136917/1257789172673020057/1365367124587188225)
+~[iPsalmy](https://x.com/Dghost_Ninja?t=Tu9xP2NeeGKuznrbgdQizQ&s=09)
