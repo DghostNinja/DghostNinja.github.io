@@ -279,16 +279,100 @@ I was unable to lacate any URL endpoint fecthing resources from the internal or 
 
 
 ## API8: Security Misconfiguration
+Security Misconfiguration is one of the most common and critical web application vulnerabilities. It happens when security settings are not properly defined, misapplied, or left in default state, which can expose the system to unauthorized access, sensitive data leakage, or full system compromise.
+
+Exempting the fact that this is a vulnerable lab built specifically for testing. We can see the communication is done through an insecure HTTP protocol instead of HTTPS.
+
+Username and passwords are being proccessed and stored in plain text which can be critical for the application, if there is a successful MITM attack.
+Cookies are also in predictable base64 format and they can be forged for various exploits.
+
+Access-Control-Allow-Origin is set to allow all URLs with the  *
+
+We can also notice the [API Swagger documenttion](http://localhost:5000/api/docs) being publicly accessible without any password protection.
 
 
 
 
 ### Fix:
+- Disable Debug Mode in Production
+Ensure debug logs and detailed error messages are turned off in live environments.
+
+- Implement Proper CORS Policy
+Avoid Access-Control-Allow-Origin: *. Allow only trusted domains.
+
+- Remove Unused Endpoints & Features
+Eliminate default, test, or dev endpoints and unused services.
+
+- Use Secure HTTP Headers
+Add headers like Strict-Transport-Security, X-Content-Type-Options, X-Frame-Options, etc.
+
+- Set Strong Authentication & Authorization
+Enforce token-based auth (e.g., JWT) and validate user roles per endpoint.
+
+- Validate & Sanitize All Inputs
+Prevent injection, path traversal, and other user-input-based attacks.
+
+- Restrict Admin/Privileged Access
+Protect admin routes and sensitive endpoints with proper auth layers.
+
+- Keep Dependencies & Frameworks Updated
+Regularly patch libraries, packages, and server software.
+
+- Limit Request Sizes & Rate Limit
+Avoid abuse or DoS by limiting payload sizes and applying rate-limiting.
+
+- Log & Monitor Security Events
+Keep track of suspicious behavior or misused endpoints.
 
 
 
+## API9: Improper Inventory Management
+This refers to poor visibility, control, and documentation of your APIs, which increases the attack surface and makes security testing harder.
+This leads to exposed or forgotten endpoints (like old versions or dev/test APIs), which attackers can find and exploit.
 
-## API9: Unrestricted Access to Sensitive Business Flows
+### Exploitation:
+Move to the forgot password endpoint and request for a password reset for a victim's account. Let's do this for account A
+
+![alt](/assets/images/vuln-api/A25.png)
+
+Since email is not provided while registration we can't get the reset PIN for this user. In a real case, the PIN would be sent to the victim. There's a catch here. We can view the reset PIN by changing the API version from **v1** to **v2**.
+
+![alt](/assets/images/vuln-api/A26.png)
+
+![alt](/assets/images/vuln-api/A27.png)
+
+We are able to view the reset pin for this user and also reset the password using the PIN
+
+![alt](/assets/images/vuln-api/A28.png)
+
++ There are still more endpoints in this app you can exploit this way. Dig and find.
+
+### Fix:
+- Maintain an API Inventory
+Track all public, private, internal, and third-party APIs.
+
+- Use an API Gateway
+Route all API traffic through a central gateway to monitor and control access.
+
+- Implement API Versioning Policies
+Clearly mark deprecated APIs and retire them when obsolete.
+
+- Scan for Shadow/Unknown APIs
+Regularly scan your network for undocumented or forgotten APIs.
+
+- Restrict Non-Production Environments
+Block access to staging/dev APIs from the public internet.
+
+- Apply Consistent Naming & Documentation
+Follow naming conventions and document all endpoints properly.
+
+- Tag APIs with Metadata
+Include ownership, version, environment (prod/dev), and purpose.
+
+- Monitor & Log API Activity
+Set up logging to detect usage of outdated or unknown endpoints.
+
+# API10: Unsafe Consumption of APIs
 
 
 
