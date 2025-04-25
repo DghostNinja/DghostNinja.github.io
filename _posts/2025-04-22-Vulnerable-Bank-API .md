@@ -196,7 +196,41 @@ Restrict high-resource actions to authenticated users with limits.
 Track resource usage and set alerts for abnormal spikes.
 
 
-## API5:  BOLA (Broken Obeject Level Authorization)
+## API5:  BFLA (Broken Function Level Authorization)
+It's a security vulnerability where an application does not properly enforce authorization checks at the function or API endpoint level. This can allow a user to access or perform actions they shouldn’t be able to, based on their role or permissions.
+
+
+### Exploitation:
+To exploit this, register as a regular user, locate an admin endpoint from the swagger. Send and intercept the request through web proxy and try to perform actions only an admin is authorized to do.
+
+I tried to delete account 1 without being the admin but this vulnerable bank seems not to be vulnerable to this. I also tried to request for a loan through account A and make account B approve the loan request, but still not vulnerable to this vulnerability. 
+
+
+Hol'up! Don't scroll away yet. I found something.
+
+There's a way aroud performing BFLA on this application. We can chain the Broken Authentication vulnerability with this one.
+
+Let's go to jwt.io and change the *is_admin* in the JWT token from **false** to **true**. Navigate to the Delete user endpoint in postman. Copy and Paste the forged jwt iinto the Authorization tab.
+
+
+![alt](/assets/images/vuln-api/A21.png)
+
+![alt](/assets/images/vuln-api/A22.png)
+
+
+Add the user ID of account A into the request and send the request.
+
+![alt](/assets/images/vuln-api/A23.png)
+
+Boom! We've deleted account A by using account B.
+
++ **Bonus**: You can dig around to find and exploit more admin endpoint not properly verifying if you are admin or not, before you perform a specific action on the server
+
+### Fix:
+
+
+
+## API6: Unrestricted Access to Sensitive Business Flows
 
 
 
