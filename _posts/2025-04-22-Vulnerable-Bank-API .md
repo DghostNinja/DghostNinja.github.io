@@ -115,6 +115,10 @@ When we try logging in into account A dashboard using the previous password we s
 
 ![alt](/assets/images/vuln-api/A14.png)
 
+![alt](/assets/images/vuln-api/A15.png)
+
+![alt](/assets/images/vuln-api/A16.png)
+
 The API endpoint didn't verify what we are able to do or not, so this enabled us to reset another user's password.
 In a real scenario this would be a complete ATO - Acoount Take Over.
 
@@ -128,3 +132,37 @@ Implement a secure password reset flow with proper verification:
 - Never accept direct email + new password combinations without prior authentication or token verification.
 
 - Add rate-limiting and logging to prevent brute-force attacks
+
+
+
+## API3: Broken Object Property Level Authorization (BOPLA)
+
+
+
+### Exploitation:
+
+
+### Fix:
+
+
+
+
+## API4:  BOLA (Broken Obeject Level Authorization)
+
+
+
+### Exploitation:
+
+
+### Fix:
+
+
+
+## API5:  BOLA (Broken Obeject Level Authorization)
+
+
+
+### Exploitation:
+
+
+### Fix:
