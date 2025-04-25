@@ -12,7 +12,7 @@ publish: true
 [Ghost St Badmus](https://x.com/commando_skiipz?t=rPix1FAXa-vFamgkrxjjnQ&s=09), a cracked Snr. Application Security Engineer developed a vulnerable Web Application, API and Mobile Application for Pentesters, Bug Bounty Hunters and Security Researchers. To test their skills without messing up real world infrastructures.
 
 
-In this write-up, I'll be exploiting the APIs in the web apllication version of the vulnerable lab, as a complement to my completed course from [APISEC University](https://university.apisec.ai/)
+In this write-up, I'll be exploiting the APIs in the web apllication version of the vulnerable bank lab, as complement and test for my recently completed course from [APISEC University](https://university.apisec.ai/)
 
 ---
 
@@ -49,7 +49,7 @@ BOLA (Broken Object Level Authorization) is a common and critical vulnerability 
 ### Exploitation:
 Let's start with exploiting BOLA from the API endpoint.
 
-As usual, register 2 accounts like we are testing for IDOR. Let's call them both Acount A and Account B respectively. On Postman, set your baseurl in the collection to **http://localhost:5000**. Login in.
+As usual, register 2 accounts like we are testing for IDOR. Let's call both Acount A and Account B respectively. On Postman, set your **baseurl** in the collection to **http://localhost:5000**. Login in.
 
 ![alt](/assets/images/vuln-api/A5.png)
 
@@ -70,14 +70,61 @@ Now, let's log in again as Account B and move to the transaction endpoint so we 
 
 ![alt](/assets/images/vuln-api/A9.png)
 
-From the image above, we can notice we got are able to view the transaction details of Account A while we are authenticated as Account B.
+From the image above, we can notice we are able to view the transaction details of Account A while authenticated as Account B.
 
 The API failed to enforce object-level authorization. It trusted that any user who sends a valid token could access any account's transactions, as long as they knew the account ID.
+
+### Fix:
+Always enforce user-level authorization on every API request:
+
+- Verify the authenticated user's ID matches the target resource (e.g., user ID, account ID).
+
+- Never rely on client-side input or assume users will only access their own data.
+
+- Implement backend checks to ensure users can only access, modify, or delete their own resources.
 
 
 ## API2: Broken Authentication
 
+Broken Authentication is one of the most dangerous vulnerabilities in web and API security. It happens when an application fails to properly verify user identity or enforce authentication controls — allowing attackers to impersonate users or access protected resources.
 
 
 
 ### Exploitation:
+
+To exploit this, we will be authenticated as Account B and request a password reset for Account A. We got a **Invalid Reset PIN**. Meaning, the Reset password API endpoint isn't verifying if we are authorized to carry out this action.
+
+![alt](/assets/images/vuln-api/A10.png)
+
+Let's proxy the request through web proxy (Burp/Caido), copy the 
+reset password JSON parameter. Now, let's fuzz the PIN with *wfuzz*
+
+![alt](/assets/images/vuln-api/A11.png)
+
+![alt](/assets/images/vuln-api/A12.png)
+
+
+Using the crafted command *wfuzz -d '{"username":"ipsalmy", "reset_pin":"FUZZ", "new_password":"Reset@1"}' -H 'Content-type: application/json' -z file,/usr/share/wordlists/SecLists/Fuzzing/3-digits-000-999.txt -u http://172.19.0.3:5000/api/v2/reset-password --hc 500* we were able to reset the password of Account A.
+
+
+![alt](/assets/images/vuln-api/A13.png)
+
+- Ensure you have Seclists wordlist installed before running this fuzz
+
+When we try logging in into account A dashboard using the previous password we set while registering, we get an error. Try the new password we added while fzzing the endpoint and we have access to account A.
+
+![alt](/assets/images/vuln-api/A14.png)
+
+The API endpoint didn't verify what we are able to do or not, so this enabled us to reset another user's password.
+In a real scenario this would be a complete ATO - Acoount Take Over.
+
+### Fix:
+Implement a secure password reset flow with proper verification:
+
+- Require a unique, time-bound reset token sent to the user's email.
+
+- Only allow password reset after verifying the token.
+
+- Never accept direct email + new password combinations without prior authentication or token verification.
+
+- Add rate-limiting and logging to prevent brute-force attacks
