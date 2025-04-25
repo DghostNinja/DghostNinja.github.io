@@ -156,7 +156,7 @@ For example:
 
 An attacker might be able to send parameters like balance, is_admin, or other internal properties that they should not have access to.
 
-We will be chaining and exploiting this vulnerablility (Mass Assignment) to alter bussiness in flow in API6
+We will be chaining and exploiting this vulnerablility (Mass Assignment) to alter bussiness in flow in API6.
 
 ### Exploitation:
 For this, I tried switchig the **is_admin": false** parameter from *true* to *false* but I wasn't gettting any admin privileges or seeing the admin dashboard. So, let's try another approach.
