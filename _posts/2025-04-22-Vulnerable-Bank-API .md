@@ -86,7 +86,7 @@ Always enforce user-level authorization on every API request:
 
 ## API2: Broken Authentication
 
-Broken Authentication is one of the most dangerous vulnerabilities in web and API security. It happens when an application fails to properly verify user identity or enforce authentication controls — allowing attackers to impersonate users or access protected resources.
+Broken Authentication is one of the most dangerous vulnerabilities in web and API security. It happens when an application fails to properly verify user identity or enforce authentication controls, allowing attackers to impersonate users or access protected resources.
 
 
 
@@ -135,19 +135,42 @@ Implement a secure password reset flow with proper verification:
 
 
 
-## API3: Broken Object Property Level Authorization (BOPLA)
-
+## API3: (BOPLA (Broken Object Property Level Authorization)
+Broken Object Property Level Authorization (BOPLA) is a lesser-known but dangerous API vulnerability where users can modify specific fields or properties of an object that they shouldn’t have access to, even if they’re allowed to access the object itself.
 
 
 ### Exploitation:
+For this, I tried switchig the **is_admin": false** parameter from *true* to *false* but I wasn't gettting any admin privileges or seeing the admin dashboard. So, let's try another approach.
+
+Let's register a new user(Account C) and give it admin privileges. We can do this by introudcing the **is_admin: true** into the API endpoint.
+
+While trying this out, I almost gave up on it thinking it's not working, but I missed something out, comma (,) to separate the JSON request.
+
+![alt](/assets/images/vuln-api/A17.png)
+
+![alt](/assets/images/vuln-api/A18.png)
+
+![alt](/assets/images/vuln-api/A19.png)
+
+![alt](/assets/images/vuln-api/A20.png)
+
+
+We can confirm from both the webproxy and the dashboard that Account 3 has been registered as an admin.
+
 
 
 ### Fix:
+- Whitelist allowed fields server-side
+
+- Never trust the client to send safe data even during registration.
+
+- Ignore or explicitly reject any unauthorized fields in the payload.
+
+- For sensitive fields (like is_admin, role, etc.), set or manage them exclusively on the server, not through user input.
 
 
 
-
-## API4:  BOLA (Broken Obeject Level Authorization)
+## API4:  Unrestricted Resource Consumption
 
 
 
