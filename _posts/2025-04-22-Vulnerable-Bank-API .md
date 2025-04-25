@@ -144,8 +144,19 @@ Two significant vulnerabilities make up the BOPLA:
 
 This vulnerability occurs when an API exposes more data than necessary to the client. Typically, APIs only return the data that's essential for the functionality a user needs to perform their task. However, in the case of Excessive Data Exposure, an API may return sensitive information such as:
 
+```plaintext
 Admin status (is_admin: true)
+```
 
+2. Mass Assignment
+
+Mass Assignment is a vulnerability that occurs when an API or server incorrectly trusts the data being sent from the client side. In a typical API, users can send requests with data, and the server should only accept and process specific fields (e.g., a username, email, or password). However, with Mass Assignment, an attacker can send additional parameters that the server mistakenly trusts and processes.
+
+For example:
+
+An attacker might be able to send parameters like balance, is_admin, or other internal properties that they should not have access to.
+
+We will be chaining and exploiting this vulnerablility (Mass Assignment) to alter bussiness in flow in API6
 
 ### Exploitation:
 For this, I tried switchig the **is_admin": false** parameter from *true* to *false* but I wasn't gettting any admin privileges or seeing the admin dashboard. So, let's try another approach.
