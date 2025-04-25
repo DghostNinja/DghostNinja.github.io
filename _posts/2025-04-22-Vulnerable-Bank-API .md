@@ -244,17 +244,51 @@ Log and monitor all privileged function access to detect unauthorized attempts.
 
 
 ## API6: Unrestricted Access to Sensitive Business Flows
-
+Unrestricted Access to Sensitive Business Flows refers to a security vulnerability where unauthorized users can access or perform actions on critical business processes, workflows, or resources that should be restricted based on roles, permissions, or authorization levels.
 
 
 ### Exploitation:
+Let's head over to the Register Endpoint and create a new account(calling this Account A to replace the one deleted). Remember how we added **is_admin** earlier, let's add **"balance": 1000000.0** while creating this account. 
+
+![alt](/assets/images/vuln-api/A24.png)
+
+Log into the newly created account and we can see we an initial balance of $ 1000000.
+
+### Fix:
+- Role-Based Access Control (RBAC):
+Enforce strict role validation to ensure only authorized users can access or modify sensitive business flows.
+
+- Input Validation:
+Validate all incoming data, ensuring no sensitive fields (like balance, admin flags) are exposed or tampered with by users.
+
+- Server-Side Control:
+Handle critical actions (e.g., adding funds, changing roles) server-side. Do not allow users to modify sensitive fields directly via requests.
+
+- Authorization Checks for Every Action:
+Always check the user's role and permissions before allowing access to any sensitive business flow or functionality.
+
+- Endpoint Protection:
+Protect sensitive endpoints by requiring additional security measures, such as multi-factor authentication (MFA) or rate limiting, to prevent unauthorized access.
+
+
+## API7: SSRF (Server Side Request Forgery)
+SSRF (Server-Side Request Forgery) is a vulnerability where an attacker can send crafted requests from the server-side to internal or external resources that the server can access, but which should not be accessible to the attacker. This often occurs when user-supplied URLs or IP addresses are not properly validated, allowing the attacker to exploit the API's ability to send requests.
+
+I was unable to lacate any URL endpoint fecthing resources from the internal or external server on this application.
+
+
+
+## API8: Security Misconfiguration
+
+
 
 
 ### Fix:
 
 
 
-## API7: Unrestricted Access to Sensitive Business Flows
+
+## API9: Unrestricted Access to Sensitive Business Flows
 
 
 
