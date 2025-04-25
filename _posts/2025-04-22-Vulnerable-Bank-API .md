@@ -135,8 +135,16 @@ Implement a secure password reset flow with proper verification:
 
 
 
-## API3: (BOPLA (Broken Object Property Level Authorization)
+## API3: BOPLA (Broken Object Property Level Authorization)
 Broken Object Property Level Authorization (BOPLA) is a lesser-known but dangerous API vulnerability where users can modify specific fields or properties of an object that they shouldn’t have access to, even if they’re allowed to access the object itself.
+
+Two significant vulnerabilities make up the BOPLA:
+
+1. Excessive Data Exposure
+
+This vulnerability occurs when an API exposes more data than necessary to the client. Typically, APIs only return the data that's essential for the functionality a user needs to perform their task. However, in the case of Excessive Data Exposure, an API may return sensitive information such as:
+
+Admin status (is_admin: true)
 
 
 ### Exploitation:
