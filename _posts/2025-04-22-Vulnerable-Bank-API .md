@@ -174,7 +174,7 @@ While trying this out, I almost gave up on it thinking it's not working, but I m
 ![alt](/assets/images/vuln-api/A20.png)
 
 
-We can confirm from both the webproxy and the dashboard that Account 3 has been registered as an admin.
+We can confirm from both the webproxy and the dashboard that Account 3 has been registered as an admin. We can accept loan request, add balance or delete any user we wish to.
 
 
 
