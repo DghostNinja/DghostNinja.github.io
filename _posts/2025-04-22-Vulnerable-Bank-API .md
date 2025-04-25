@@ -171,14 +171,29 @@ We can confirm from both the webproxy and the dashboard that Account 3 has been 
 
 
 ## API4:  Unrestricted Resource Consumption
-
+This vulnerability occurs when an API allows clients to consume excessive server resources (CPU, memory, bandwidth, or database queries) without any limits or throttling, leading to performance issues, service degradation, or even denial of service (DoS).
 
 
 ### Exploitation:
+From the Broken Authentication attack we performed earlier to be successful, it means the application is not restricting requests sent to server. Requests like unsuccessful login, forgot password, rest password and the likes. 
 
+This renders the web application vulnerable to attacks like bruteforcing, no rate limit, password spraying and race condition.
 
 ### Fix:
+- Rate Limiting:
+Use tools (e.g., Nginx, API Gateways) to limit requests per user/IP.
 
+- Pagination:
+Enforce limit and offset with a max cap (e.g., limit=100).
+
+- Timeouts & Resource Caps:
+Set execution timeouts and memory limits for heavy operations.
+
+- Authentication & Throttling:
+Restrict high-resource actions to authenticated users with limits.
+
+- Monitoring:
+Track resource usage and set alerts for abnormal spikes.
 
 
 ## API5:  BOLA (Broken Obeject Level Authorization)
