@@ -140,7 +140,7 @@ Broken Object Property Level Authorization (BOPLA) is a lesser-known but dangero
 
 Two significant vulnerabilities make up the BOPLA:
 
-1. Excessive Data Exposure
+**Excessive Data Exposure**
 
 This vulnerability occurs when an API exposes more data than necessary to the client. Typically, APIs only return the data that's essential for the functionality a user needs to perform their task. However, in the case of Excessive Data Exposure, an API may return sensitive information such as:
 
@@ -148,7 +148,7 @@ This vulnerability occurs when an API exposes more data than necessary to the cl
 Admin status (is_admin: true)
 ```
 
-2. Mass Assignment
+**Mass Assignment**
 
 Mass Assignment is a vulnerability that occurs when an API or server incorrectly trusts the data being sent from the client side. In a typical API, users can send requests with data, and the server should only accept and process specific fields (e.g., a username, email, or password). However, with Mass Assignment, an attacker can send additional parameters that the server mistakenly trusts and processes.
 
@@ -163,7 +163,7 @@ For this, I tried switchig the **is_admin": false** parameter from *true* to *fa
 
 Let's register a new user(Account C) and give it admin privileges. We can do this by introudcing the **is_admin: true** into the API endpoint.
 
-While trying this out, I almost gave up on it thinking it's not working, but I missed something out, comma (,) to separate the JSON request.
+While trying this out, I almost gave up on it thinking it's not working, but I missed something out, which was a comma (,) to separate the JSON request.
 
 ![alt](/assets/images/vuln-api/A17.png)
 
