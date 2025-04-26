@@ -267,11 +267,15 @@ Unrestricted Access to Sensitive Business Flows refers to a security vulnerabili
 
 
 ### Exploitation:
+Since there is a mass assignment vulnerability in this application, we can utilize that to our own advantage.
+
 Let's head over to the Register Endpoint and create a new account(calling this Account A to replace the one deleted). Remember how we added **is_admin** earlier, let's add **"balance": 1000000.0** while creating this account. 
 
 ![alt](/assets/images/vuln-api/A24.png)
 
 Log into the newly created account and we can see we an initial balance of $ 1000000.
+
+This means, we can add as much balance as we like to any user
 
 ### Fix:
 - Role-Based Access Control (RBAC):
