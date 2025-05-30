@@ -57,7 +57,7 @@ That worked because the app never stops you from doing so.
 
 
 ### Fix:
-Just adding a server-side check like the one above enforces some basic business rules. You could also implement a daily cap with a transaction history table.
+Just adding a server-side check like the one above enforces some basic business rules. You could also implement a daily capital with a transaction history table.
 
 ```python
 if amount > 500:  # Business rule: no more than $500 per transaction
