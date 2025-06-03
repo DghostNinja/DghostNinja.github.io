@@ -159,4 +159,4 @@ Stay sharp, build with intent, and always think like the ones trying to break in
 
 We still have other vulnerabilities from the code to be exploited. Try finding them in your free time as practice. 
 
-Catch you in the next write-up. Happy Hacking!
+Catch you in the next write-up. Happy Hacking!✌️
