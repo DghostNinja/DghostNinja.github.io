@@ -2,7 +2,7 @@
 title: "Insecure Design - BreakTheFlask"
 date: 2025-06-03
 categories: [OWASP, Code review, BreakTheFlask]
-tags: [Code review, IDOR, BAC]
+tags: [Code review, IDOR, BAC, ATO, Password-reset]
 layout: post
 publish: true
 ---
