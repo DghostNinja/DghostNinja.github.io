@@ -13,7 +13,7 @@ Hello Hacker! Welcome to another BreakTheFlask Session. This should be the last 
 
 Today, we will be exploiting and explaining the vulnerabilities caused by Insecure design in this code today.
 
-Using the vulnerable flask code from ==> **https://github.com/DghostNinja/BreakTheFlask.git**
+Using the vulnerable flask code from ==> [BreakTheFlask](https://github.com/DghostNinja/BreakTheFlask.git)
 
 
 From the insecure design vulnerable code in the repo above, we can find:
