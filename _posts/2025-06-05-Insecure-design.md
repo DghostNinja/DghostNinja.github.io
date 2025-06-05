@@ -8,7 +8,7 @@ publish: true
 ---
 
 
-# Explaining and Insecure Design
+# Exploiting Insecure Design
 Hello Hacker! Welcome to another BreakTheFlask Session. This should be the last vulnerable code for this specific session.
 
 Today, we will be exploiting and explaining the vulnerabilities caused by Insecure design in this code today.
