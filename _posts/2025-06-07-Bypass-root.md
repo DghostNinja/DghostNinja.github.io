@@ -27,7 +27,9 @@ First thing I thought of was using objection to p
 atch and repack the mobile application to remove the security feature, because I have once done this before. Didnt work this time.
 I later decided to go with using objection to explore the app and I kept on running into some bunch of errors
 
-[]image with objection 
+So, I decdided to patch the app using [apk-mitm](https://github.com/niklashigi/apk-mitm). This CLI tool would have modified the source to disable the security checks and replace some network configuration files, but this didn't work.
+
+[]apk-mitm image 
 
 
 
