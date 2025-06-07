@@ -138,7 +138,7 @@ I also had a plan to go the smali route where I'd have to manually remove detect
 ```
 
 # Bonus
-I created a small bash script to help automate pushing the correct frida-server to the emulator and setting permissions. Super helpful when you're in a hurry or doing repeated tests. Grab it [here](https://github.com/DghostNinja/Application-Security/blob/main/APPSEC-notes%2FMobSec%2Ffrida_set.sh) and grant permission and run. 
+I created a small bash script to help automate pushing the correct frida-server to the emulator and setting permissions. Super helpful when you're in a hurry or doing repeated tests. Grab it [here](https://github.com/DghostNinja/Application-Security/blob/main/APPSEC-notes%2FMobSec%2Ffrida_set.sh) grant permission and run. 
  
 All you have to do is download the right frida server for your andriod emulator from [Github](https://github.com/frida/frida/releases/tag/17.1.2), rename to **frida-server** and run the script.
 
