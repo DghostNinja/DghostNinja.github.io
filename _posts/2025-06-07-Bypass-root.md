@@ -69,7 +69,12 @@ I generated [a second](https://github.com/DghostNinja/Application-Security/blob/
 []image of both being succesful
 
 ## Final thought 
+> At some point I wanted to give up and reach out tonthe devs to remove the security feature so to make things easier, but I had to think like an attacker. They won't stop till they find a way to bypass any security check. Plus, what's the purpose of me being in love wih Security research if I can't even do the research. 
 
+> I also add another abother idea of manually removing the security check from the smali and repacking the app. The first method just worked at the end so I didn't need to do this.
+
+
+> 💡 **Pro Tip**: You can make use of Magisk/MagiskHide with a proper DenyList for most basic root checks.
 
 # Bonus
 I made a bash script to automate the process of installing and pushing the frida server into your andruod emulator easily. Figured out the manual process can sometimes be a little time taking, if one is running on schedule. 
@@ -78,6 +83,5 @@ All you have to do is download the right frida server for your andriod emulator 
 
 Link to the frida server setup can be found [here](https://github.com/DghostNinja/Application-Security/blob/main/APPSEC-notes%2FMobSec%2Ffrida_set.sh). All you have to do is grant permmission and run. 
 
-> 💡 **Pro Tip**: Use MagiskHide with a proper DenyList for most basic root checks.
 
 See you in the next write-up. Happy hacking!✌️
