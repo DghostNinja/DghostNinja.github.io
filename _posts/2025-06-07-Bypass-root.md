@@ -7,7 +7,7 @@ layout: post
 publish: true
 ---
 
-# > Introduction
+# Introduction
 🧰 Tools: Frida, apk-mitm, Objection, Genymotion  
 📱 Target App: (Redacted)
 
@@ -16,17 +16,59 @@ Mobile app developers often implement root/jailbreak and emulator detection to p
 In this post, I’ll walk you through how I defeated both root and emulator detection mechanisms in a real-world Android application. I’ll cover how I bypassed the detection logic, the technical steps I took to disable it and also the rabbit holes I fell into. Whether you're a security researcher, reverse engineer, or just curious about mobile app internals, this post will give you a hands-on look at how these defenses work and how to get around them.
 
 ## The Dive
-(/assets/images/Root-detection/A1.png)
+> (/assets/images/Root-detection/A1.png)
 
 
 
 ## The Solution
-I first generated a [js code](https://github.com/DghostNinja/Application-Security/blob/main/APPSEC-notes%2FMobSec%2Fbypass-root-emulator.js) to hook with frida and the mobile app. 
-[]
+I generated a first [js code](https://github.com/DghostNinja/Application-Security/blob/main/APPSEC-notes%2FMobSec%2Fbypass-root-emulator.js) to hook with frida and the mobile app. 
+
+```js
+Java.perform(function () {
+    var Build = Java.use("android.os.Build");
+    var Debug = Java.use("android.os.Debug");
+
+    // Bypass "Build.FINGERPRINT" and related emulator checks
+    Build.FINGERPRINT.value = "samsung/SM-G975F";
+    Build.MODEL.value = "SM-G975F";
+    Build.MANUFACTURER.value = "samsung";
+    Build.BRAND.value = "samsung";
+    Build.DEVICE.value = "beyond1";
+    Build.PRODUCT.value = "beyond1";
+
+    // Bypass Debug checks
+    Debug.isDebuggerConnected.implementation = function () {
+        return false;
+    };
+
+    // Optional: Bypass common root file checks
+    var File = Java.use("java.io.File");
+    File.exists.implementation = function () {
+        var name = this.getAbsolutePath();
+        if (
+            name.indexOf("su") !== -1 ||
+            name.indexOf("busybox") !== -1 ||
+            name.indexOf("magisk") !== -1
+        ) {
+            return false;
+        }
+        return this.exists();
+    };
+
+    console.log("[+] Root and emulator checks bypassed.");
+});
+```
+
+[]image of root bypass but not emulator
 
 
-This script was able bypass the root detection, which gave me the confidence to keep digging since I got a step closer to my main goal.
+This script was only able to bypass the root detection, but not tye emulator. This gave me the confidence to keep digging, since I got a step closer to my main goal.
 
+I generated [a second](https://github.com/DghostNinja/Application-Security/blob/main/APPSEC-notes%2FMobSec%2Fbypass-root-%26-emulator-detection.js#L1-L117) and hook to the app with frida and voilà! I was able to get pass both the root and emulator check.
+
+[]image of both being succesful
+
+## Final thought 
 
 
 # Bonus
@@ -35,5 +77,7 @@ I made a bash script to automate the process of installing and pushing the frida
 All you have to do is download the right frida server for your andriod emulator from [Github](https://github.com/frida/frida/releases/tag/17.1.2)
 
 Link to the frida server setup can be found [here](https://github.com/DghostNinja/Application-Security/blob/main/APPSEC-notes%2FMobSec%2Ffrida_set.sh). All you have to do is grant permmission and run. 
+
+> 💡 **Pro Tip**: Use MagiskHide with a proper DenyList for most basic root checks.
 
 See you in the next write-up. Happy hacking!✌️
