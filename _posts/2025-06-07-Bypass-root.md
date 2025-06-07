@@ -15,6 +15,7 @@ In this post, I’ll walk you through how I defeated both root and emulator dete
 
 ## The Dive
 
+![alt](/assets/images/Root-detection/A1.png)
 
 
 ## The Solution
