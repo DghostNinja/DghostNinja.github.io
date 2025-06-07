@@ -2,12 +2,14 @@
 title: "Bypassing Root & Emulator Detection in Mobile Apps"
 date: 2025-06-07
 categories: [MobileSecurity]
-tags: [MAPT, Security-Bypass, Secueity Research]
+tags: [MAPT, Security-Bypass, Secueity Research, Frida, Objection, Genymotion]
 layout: post
 publish: true
 ---
 
 # > Introduction
+🧰 Tools: Frida, apk-mitm, Objection, Genymotion  
+📱 Target App: (Redacted)
 
 Mobile app developers often implement root/jailbreak and emulator detection to protect sensitive data, prevent tampering, or block automation. But like any client-side control, these mechanisms can be bypassed with the right knowledge and tools.
 
