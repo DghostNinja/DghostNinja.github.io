@@ -4,7 +4,7 @@ date: 2025-06-07
 categories: [MobileSecurity]
 tags: [MAPT, Security-Bypass, Secueity Research]
 layout: post
-publish: false
+publish: true
 ---
 
 # > Introduction
