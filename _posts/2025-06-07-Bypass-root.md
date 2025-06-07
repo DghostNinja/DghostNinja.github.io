@@ -16,7 +16,21 @@ Mobile app developers often implement root/jailbreak and emulator detection to p
 In this post, I’ll walk you through how I defeated both root and emulator detection mechanisms in a real-world Android application. I’ll cover how I bypassed the detection logic, the technical steps I took to disable it and also the rabbit holes I fell into. Whether you're a security researcher, reverse engineer, or just curious about mobile app internals, this post will give you a hands-on look at how these defenses work and how to get around them.
 
 ## The Dive
-> (/assets/images/Root-detection/A1.png)
+> (/assets/images/Root-detection/A1.png) the error we are dealing
+
+Recently got faced with this challenging task. It was challenging because that was my first time facing such issue on a a live mobile application.
+
+####
+The Rabbit hole
+
+First thing I thought of was using objection to p
+atch and repack the mobile application to remove the security feature, because I have once done this before. Didnt work this time.
+I later decided to go with using objection to explore the app and I kept on running into some bunch of errors
+
+[]image with objection 
+
+
+
 
 
 
@@ -64,12 +78,19 @@ Java.perform(function () {
 
 This script was only able to bypass the root detection, but not tye emulator. This gave me the confidence to keep digging, since I got a step closer to my main goal.
 
-I generated [a second](https://github.com/DghostNinja/Application-Security/blob/main/APPSEC-notes%2FMobSec%2Fbypass-root-%26-emulator-detection.js#L1-L117) and hook to the app with frida and voilà! I was able to get pass both the root and emulator check.
+I generated [a second](https://github.com/DghostNinja/Application-Security/blob/main/APPSEC-notes%2FMobSec%2Fbypass-root-%26-emulator-detection.js#L1-L117).
+
+This Frida script is designed to  bypass security checks in Android apps that try to detect if the device is rooted, running in an emulator, or being debugged. Can be used in reverse engineering, pen-testing, or modifying app behavior.
+
+> It does this by faking device information to look like a real Samsung phone. Hiding debugger presence by always returning false for debugger checks. Hiding root binaries (su, magisk, busybox, etc.) from file existence checks. Faking system properties (like ro.debuggable) to values typical of non-rooted, production devices.Blocking execution of suspicious root-related commands via Runtime.exec and ProcessBuilder. Preventing detection of the su process by intercepting file reads to /proc/*/cmdline.
+
+
+After hooking the script to the app with frida, voilà! I was able to get pass both the root and emulator check.
 
 []image of both being succesful
 
 ## Final thought 
-> At some point I wanted to give up and reach out tonthe devs to remove the security feature so to make things easier, but I had to think like an attacker. They won't stop till they find a way to bypass any security check. Plus, what's the purpose of me being in love wih Security research if I can't even do the research. 
+> At some point I wanted to give up but I had to think like an attacker. They won't stop till they find a way to bypass any security check. Plus, what's the purpose of me being in love wih Security research if I can't even do the research. 
 
 > I also add another abother idea of manually removing the security check from the smali and repacking the app. The first method just worked at the end so I didn't need to do this.
 
