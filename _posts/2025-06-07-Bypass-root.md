@@ -1,5 +1,5 @@
 ---
-title: "Bypass root detction "
+title: "Bypassing Root & Emulator Detection in Mobile Apps"
 date: 2025-06-07
 categories: [MobileSecurity]
 tags: [MAPT, Security-Bypass, Secueity Research]
