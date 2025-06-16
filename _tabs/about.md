@@ -3,6 +3,9 @@
 icon: fas fa-info-circle
 order: 4
 ---
+<p align="center">
+  <img src="https://avatars.githubusercontent.com/u/121746490?s=96&v=4" alt="My Banner" width="500"/>
+</p>
 
 # Meet the Mind Behind the Machine
 
