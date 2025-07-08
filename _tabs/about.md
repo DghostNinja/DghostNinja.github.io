@@ -5,9 +5,7 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-<p align="center">
-  <img src="{{ site.baseurl }}/assets/images/profile/P1.jpg" alt="My Banner" width="500"/>
-</p>
+<img src="{{ site.baseurl }}/assets/images/profile/P1.jpg" alt="My Banner" width="500" style="display: block; margin: 2rem auto; border-radius: 12px;" />
 
 # Meet the Mind Behind the Machine
 
