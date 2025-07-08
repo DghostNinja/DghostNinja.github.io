@@ -5,20 +5,7 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-<img 
-  src="{{ site.baseurl }}/assets/images/profile/P1.jpg" 
-  alt="My Banner" 
-  width="500" 
-  style="
-    display: block; 
-    margin: 2rem auto; 
-    border-radius: 12px; 
-    transition: box-shadow 0.3s ease; 
-  "
-  onmouseover="this.style.boxShadow='0 10px 25px rgba(0,0,0,0.2)'"
-  onmouseout="this.style.boxShadow='none'"
-/>
-
+<img src="{{ site.baseurl }}/assets/images/profile/P1.jpg" alt="My Banner" width="500" style="display: block; margin: 2rem auto; border-radius: 12px;" />
 
 # Meet the Mind Behind the Machine
 
