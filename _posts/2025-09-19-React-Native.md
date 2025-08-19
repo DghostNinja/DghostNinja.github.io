@@ -1,6 +1,6 @@
 ---
 title: "Running Expo with Tunnel Mode: Test React Native on Your Phone (Even When It’s the Hotspot)"
-date: 2025-09-19
+date: 2025-08-19
 categories: [React-Native]
 tags: [Application Security, Mobile App Development, Coding]
 layout: post
