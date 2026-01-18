@@ -36,9 +36,9 @@ Weeks went by and I still couldn't get over my loss, but you know how we roll. I
 
 ## Light? Is that you at the end of the tunnel?
 
-<div style="width: 100vw; margin-left: calc(50% - 50vw);">
-  <img src="../assets/images/Party/zeni.webp" alt="Party Zeni" style="width:100%; height:auto;">
-</div>
+
+![alt](/assets/images/Party/zeni.webp)
+
 
 
 I applied and reached out to the person who made the post and he turned out to be one of my bosses in the field. He told me he had seen my work couple of times on his TL, and my security documentation on [Vulnbank](https://dghostninja.github.io/posts/Vulnerable-Bank-API/) showed I'm good for the job. 
