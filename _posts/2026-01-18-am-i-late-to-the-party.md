@@ -13,7 +13,7 @@ Phew! There's a lot I have to share, but don't know where to start from exactly.
 Oh! By the way, this is a **Not so serious** post of acknowledgment and wrap of the previous year(2025). Let's start from the least to the best. So.......shall we?
 
 ## Is it really failure?
-I quoted a post last year that got a lot of attention, and fortunately I got a shot at taking an assessments for a *Senior Application Security Engineering* role at Moniepoint. 
+I quoted a post last year that got a lot of attention, and fortunately I got a shot at taking an assessment for a *Senior Application Security Engineering* role at Moniepoint. 
 Those who know my grind well enough know how much I don't joke with this specific role. 
 
 ![alt](/assets/images/Party/p1.jpg)
@@ -55,7 +55,7 @@ Also, personally, I feel apart from the pressure to deliver in time, and that yo
 ## Do you love me?
 I will randomly recall the days I barely had data subscription for the next task on my list and just smile. Days I'd do everything to avoid going out with my buddies, because I knew that little outing would be a great financial set back for my data plan, which in turn would affect my learning. Lost touch with a lot of people, lost myself in between the grind and all that. Typically I was actually a **GHOST**. The isolation was a coping mechanism and bit of trauma response actually, still trying to break that but can't say.
 
-Life started making more sense after this. Been hanging out more whenever I get the chance, truly present when I'm around people, doing things I've always thought was just a dream and this is just the start of it all, by His grace.
+Life started making more sense after this. Been hanging out more whenever I get the chance, truly present when I'm around people, doing things I've always thought were just dreams and this is just the start of it all, by His grace.
 
 Life is unpredictable also. Let those who you care about know you care about them, while they're still around. You can't do life alone, let yourself be carried once in a while.
 
@@ -63,6 +63,6 @@ Life is unpredictable also. Let those who you care about know you care about the
 <img src="../assets/images/Party/cheers.jpeg" alt="Party Zeni" style="width:100%; height:300;">
 
 
-Slowly moving into Hardware as the top of my list this year, getting my hands dirty on AI and Cloud also, working on being extremely cracked with mobile security too. Told myself I'm not setting unrealistic goals this year. If I'm only chanced to do just 2 things out this list, I'll make sure I do them exceptionally well. After all, if you want a bigger pay, you need a bigger brain.
+Slowly moving into Hardware as the top of my list this year, getting my hands dirty on AI and Cloud also, working on being extremely cracked at mobile security too. Told myself I'm not setting unrealistic goals this year. If I'm only chanced to do just 2 things out this list, I'll make sure I do them exceptionally well. After all, if you want a bigger pay, you need a bigger brain.
 
 Happy hacking ✌🏽.
