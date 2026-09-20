@@ -236,6 +236,6 @@ If you're a researcher, the lab is [here](https://github.com/DghostNinja/Aurelia
 
 Fair warning: sometimes you flip a status or a flag, the UI lights up like it worked, and you reach for the report button. Then you reload the page and it's gone. The app re-fetched from the server, the server said no, and your "bug" was just the client rendering a response it never actually kept. I've done this more times than I'd like to admit. Reload before you report.
 
-Happy Hacking ✌️
+Happy Hacking ✌🏽
 
 ~[iPsalmy](https://x.com/Dghost_Ninja?t=Tu9xP2NeeGKuznrbgdQizQ&s=09)
